@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-center">Contact Details</h2>
+
+    <div class="mb-3">
+        <strong>Name:</strong> {{ contact.name }}
+    </div>
+    <div class="mb-3">
+        <strong>Email:</strong> {{ contact.email }}
+    </div>
+    <div class="mb-3">
+        <strong>Message:</strong> {{ contact.message }}
+    </div>
+
+    {% if contact.image %}
+        <div class="mb-3">
+            <strong>Image:</strong> 
+            <img src="{{ contact.image.url }}" alt="Image" style="max-width: 150px;">
+        </div>
+    {% endif %}
+
+    {% if contact.pdf %}
+        <div class="mb-3">
+            <strong>PDF:</strong> 
+            <embed src="{{ contact.pdf.url }}" type="application/pdf" width="100%" height="500px" />
+            <br>
+            <a href="{{ contact.pdf.url }}" target="_blank" class="btn btn-primary">Download PDF</a>
+        </div>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="{% url 'contactapp:home' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+{% endblock %}
